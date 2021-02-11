@@ -55,7 +55,12 @@ export class Stack extends cdk.Stack {
                         isDefaultBehavior: true
                     }]
                 }
-            ]
+            ],
+            errorConfigurations: [{
+                errorCode: 404,
+                responseCode: 404,
+                responsePagePath: '/404.html'
+            }]
         });
 
         // A Record 
