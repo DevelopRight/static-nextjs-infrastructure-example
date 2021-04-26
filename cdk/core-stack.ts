@@ -8,7 +8,9 @@ import * as s3deploy from '@aws-cdk/aws-s3-deployment';
 
 const SITE_URL = 'staticnextjs.developright.co.uk';
 
-export class Stack extends cdk.Stack {
+export class CoreStack extends cdk.Stack {
+    readonly s3BucketArn: string;
+
     constructor(scope: cdk.Construct, id: string) {
         super(scope, id, {
             env: {
@@ -28,7 +30,10 @@ export class Stack extends cdk.Stack {
             websiteIndexDocument: 'index.html',
             publicReadAccess: true,
             // removalPolicy: cdk.RemovalPolicy.DESTROY
-        })
+        });
+
+        // Export Arn
+        this.s3BucketArn = siteBucket.bucketArn;
 
         // Certificate Arn (For Cloudfront)
         const certificateArn = new acm.DnsValidatedCertificate(this, 'SiteCertificate', {
