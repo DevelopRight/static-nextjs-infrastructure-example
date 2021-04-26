@@ -1,0 +1,9 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      echo Starting Install Stage
+      - npm ci
+  build:
+    commands:
+      - ./scripts/deploy-to-s3.sh ./out $S3_BUCKET_ARN
