@@ -6,6 +6,6 @@ import { CICDStack } from './ci-cd-stack';
 
 const app = new cdk.App();
 const coreStack = new CoreStack(app, 'StaticNextJsStack');
-const cicdStack = new CICDStack(app, 'ExampleCICDStack', coreStack.s3BucketArn);
+const cicdStack = new CICDStack(app, 'ExampleCICDStack', coreStack.s3BucketName);
 // Dependency on CoreStack
 cicdStack.addDependency(coreStack);

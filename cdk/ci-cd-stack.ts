@@ -6,7 +6,7 @@ import * as codepipeline_actions from '@aws-cdk/aws-codepipeline-actions';
 
 export class CICDStack extends cdk.Stack {
 
-    constructor(scope: cdk.Construct, id: string, s3OutputArn: string) {
+    constructor(scope: cdk.Construct, id: string, s3OutputName: string) {
         super(scope, id);
 
         // Retrieve Github OAuth Token
@@ -21,8 +21,8 @@ export class CICDStack extends cdk.Stack {
                 buildImage: codebuild.LinuxBuildImage.STANDARD_2_0
             },
             environmentVariables: {
-                S3_BUCKET_ARN: {
-                    value: s3OutputArn
+                S3_BUCKET_NAME: {
+                    value: s3OutputName
                 }
             }
         });
@@ -30,8 +30,8 @@ export class CICDStack extends cdk.Stack {
         // Permit CodeBuild to make use of S3 Bucket in Core Stack
         codeBuild.addToRolePolicy(new PolicyStatement({
             resources: [
-                s3OutputArn,
-                `${s3OutputArn}/*`
+                s3OutputName,
+                `${s3OutputName}/*`
             ],
             actions: [
                 's3:ListBucket',

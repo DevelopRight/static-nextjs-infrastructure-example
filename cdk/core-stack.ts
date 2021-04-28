@@ -9,7 +9,7 @@ import * as s3deploy from '@aws-cdk/aws-s3-deployment';
 const SITE_URL = 'staticnextjs.developright.co.uk';
 
 export class CoreStack extends cdk.Stack {
-    readonly s3BucketArn: string;
+    readonly s3BucketName: string;
 
     constructor(scope: cdk.Construct, id: string) {
         super(scope, id, {
@@ -33,7 +33,7 @@ export class CoreStack extends cdk.Stack {
         });
 
         // Export Arn
-        this.s3BucketArn = siteBucket.bucketArn;
+        this.s3BucketName = siteBucket.bucketName;
 
         // Certificate Arn (For Cloudfront)
         const certificateArn = new acm.DnsValidatedCertificate(this, 'SiteCertificate', {

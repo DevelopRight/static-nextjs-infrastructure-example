@@ -7,5 +7,4 @@ phases:
     commands:
       - npm ci
       - npm run build && npm run export
-      - ls
-      - ./scripts/deploy-to-s3.sh ./out $S3_BUCKET_ARN
+      - ./scripts/deploy-to-s3.sh ./out $S3_BUCKET_NAME
