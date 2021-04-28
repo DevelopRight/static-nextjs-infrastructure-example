@@ -6,8 +6,8 @@ phases:
   install:
     commands:
       - echo Starting Install Stage
-      - printenv
-      - ls
+      - npm ci
+      - npm run build && npm run export
   build:
     commands:
       - ./scripts/deploy-to-s3.sh ./out $S3_BUCKET_ARN
