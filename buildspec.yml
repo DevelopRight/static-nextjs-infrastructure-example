@@ -7,6 +7,7 @@ phases:
     commands:
       - echo Starting Install Stage
       - printenv
+      - ls
   build:
     commands:
       - ./scripts/deploy-to-s3.sh ./out $S3_BUCKET_ARN
