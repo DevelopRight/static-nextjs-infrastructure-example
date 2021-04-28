@@ -1,9 +1,12 @@
 version: 0.2
+env:
+  variables:
+    S3_BUCKET_ARN: "S3_BUCKET_ARN"
 phases:
   install:
     commands:
-      echo Starting Install Stage
-      - npm ci
+      - echo Starting Install Stage
+      - printenv
   build:
     commands:
       - ./scripts/deploy-to-s3.sh ./out $S3_BUCKET_ARN
