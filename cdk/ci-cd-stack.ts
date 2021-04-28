@@ -19,6 +19,11 @@ export class CICDStack extends cdk.Stack {
             buildSpec: codebuild.BuildSpec.fromSourceFilename('buildspec.yml'),
             environment: {
                 buildImage: codebuild.LinuxBuildImage.STANDARD_2_0
+            },
+            environmentVariables: {
+                S3_BUCKET_ARN: {
+                    value: s3OutputArn
+                }
             }
         });
 
