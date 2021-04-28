@@ -10,6 +10,7 @@ const SITE_URL = 'staticnextjs.developright.co.uk';
 
 export class CoreStack extends cdk.Stack {
     readonly s3BucketName: string;
+    readonly s3BucketArn: string;
 
     constructor(scope: cdk.Construct, id: string) {
         super(scope, id, {
@@ -34,6 +35,7 @@ export class CoreStack extends cdk.Stack {
 
         // Export Arn
         this.s3BucketName = siteBucket.bucketName;
+        this.s3BucketArn = siteBucket.bucketArn;
 
         // Certificate Arn (For Cloudfront)
         const certificateArn = new acm.DnsValidatedCertificate(this, 'SiteCertificate', {
