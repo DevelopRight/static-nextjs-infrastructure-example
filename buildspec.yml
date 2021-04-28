@@ -1,8 +1,11 @@
 version: 0.2
 
+env:
+  variables:
+    S3_BUCKET_ARN: "S3_BUCKET_ARN"
 phases:
   build:
     commands:
       - npm ci
       - npm run build && npm run export
-      - ./scripts/deploy-to-s3.sh ./out $S3_BUCKET_NAME
+      - ./scripts/deploy-to-s3.sh ./out "s3://$S3_BUCKET_NAME"
