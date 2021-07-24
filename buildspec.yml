@@ -5,7 +5,12 @@ env:
     S3_BUCKET_ARN: "S3_BUCKET_ARN"
 phases:
   build:
+    on-failure: CONTINUE
     commands:
       - npm ci
       - npm run build && npm run export
       - ./scripts/deploy-to-s3.sh ./out "s3://$S3_BUCKET_NAME"
+  post_build:
+    on-failure: CONTINUE
+    commands:
+      - ./scripts/send-slack-notification.sh "$CODEBUILD_BUILD_NUMBER"
