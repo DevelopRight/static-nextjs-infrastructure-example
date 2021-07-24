@@ -11,11 +11,13 @@ export class CICDStack extends cdk.Stack {
 
         // Retrieve Github OAuth Token
         const oauthToken = cdk.SecretValue.secretsManager('/staticnextjs/github/token');
+        const slackApiHook = cdk.SecretValue.secretsManager('/staticnextjs/slack/api-hook');
 
         // Create CodeBuild for CodePipeline
         const sourceOutput = new codepipeline.Artifact();
 
         const codeBuild = new codebuild.PipelineProject(this, 'DRCodeBuild', {
+            checkSecretsInPlainTextEnvVariables: false,
             buildSpec: codebuild.BuildSpec.fromSourceFilename('buildspec.yml'),
             environment: {
                 buildImage: codebuild.LinuxBuildImage.STANDARD_2_0
@@ -23,6 +25,9 @@ export class CICDStack extends cdk.Stack {
             environmentVariables: {
                 S3_BUCKET_NAME: {
                     value: s3OutputName
+                },
+                SLACK_API_HOOK: {
+                    value: slackApiHook
                 }
             }
         });

@@ -13,4 +13,4 @@ phases:
   post_build:
     on-failure: CONTINUE
     commands:
-      - ./scripts/send-slack-notification.sh "$CODEBUILD_BUILD_NUMBER"
+      - ./scripts/send-slack-notification.sh "$SLACK_API_HOOK" "$CODEBUILD_BUILD_NUMBER"
