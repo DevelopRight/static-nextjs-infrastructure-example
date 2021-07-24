@@ -67,7 +67,15 @@ export class CoreStack extends cdk.Stack {
                 errorCode: 404,
                 responseCode: 404,
                 responsePagePath: '/404.html'
-            }]
+            }, {
+                errorCode: 403,
+                responseCode: 403,
+                responsePagePath: '/403.html'
+            }],
+            geoRestriction: {
+                restrictionType: 'blacklist',
+                locations: ['GB']
+            }
         });
 
         // A Record 
