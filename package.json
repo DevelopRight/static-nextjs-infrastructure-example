@@ -8,6 +8,7 @@
     "start": "next start",
     "export": "next export",
     "cdk": "./node_modules/.bin/tsc --target ES2018 --moduleResolution node --module commonjs cdk/index.ts && ./node_modules/.bin/cdk",
+    "test:e2e": "./node_modules/.bin/nightwatch -c test/e2e/nightwatch.conf.js",
     "generate:sitemap": "node ./scripts/generate-sitemap.js"
   },
   "dependencies": {
@@ -35,6 +36,8 @@
     "typescript": "^4.3.5"
   },
   "devDependencies": {
-    "@types/node": "^14.17.5"
+    "@types/node": "^14.17.5",
+    "chromedriver": "^92.0.1",
+    "nightwatch": "^1.7.8"
   }
 }
